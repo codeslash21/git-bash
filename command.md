@@ -34,7 +34,17 @@ git config --global difftool.promt false
 - When a new file is commited once then that file is tracked by Git and when the file is modified then git shows that file as modified and not as untracked. But a new file is shown as untracked file as its not be commited even for a single time.
 - `git ls-files` - show all the files which git is tracking. It not shows the files which is newly created and not commited.
 - `touch [file name with extension]` - to create a file with the given name.
-- `git commit -am "[commit message]"` - to commit the changes without moving files to staging area seperately.
+- `git commit -am "[commit message]"` - to commit the changes without moving files to staging area seperately. This command is not applicable for untracked file.
 - `git restore --staged [file name]` - to move file back from staging area to wworking directory.
-- `git checkout -- [file name]` - to undo changes in the file and back to the last commited version.
+- `git checkout -- [file name]` - to undo changes in the file and back to the last commited version. This is applicable if file is in working directory not in staging area.
+- `git help log` - to know more about various options for `log` command.
+- `git log --oneline --graph --decorate --all` - show each commit message in one single line, (graph) with branch hierarchy, (decorate) and which commits belong to which branches, (all) for all the branches in the git repository.
+- `git config --global alias.[aliased name] "[command to be aliased]"` - to make an alias for a long command. For example `git config --global alias.hist "log --oneline --graph --decorate --all"` to create an alias named `hist`.
+- `git hist -- LICENSE.md` - show the git log pertaining only to LICENSE.md file.
+- `git mv [file name] [changed name]` - to rename the given file. And, after changing the name the file is in staging area and we have to commit the change.
+- `mv [file name] [changed name]` - here we use bash mv command instead of git mv command. And, here status is shown as `file name` is deleted and a new `changed name` file is added and its an untracked file. And, to move all to staging area we can use `git add -A` command.
+- `git rm [file name]` - to delete the file. And, after this command file is in staging area and we can restore the file from there or can delete permanently by commiting that.
+- `git add -u` - move all the deleted file to staging area, but not other kind of files.
+- `git add -A` - move all the deelted and added files to staging area.
+- If we use bash command instead of git command then file will be in working directory not in staging area. Like `rm [file name]` to delete a file. And to permanently delete the file we have to add that in staging area and then commit.
 - 
