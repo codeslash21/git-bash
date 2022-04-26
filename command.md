@@ -47,4 +47,13 @@ git config --global difftool.promt false
 - `git add -u` - move all the deleted file to staging area, but not other kind of files.
 - `git add -A` - move all the deelted and added files to staging area.
 - If we use bash command instead of git command then file will be in working directory not in staging area. Like `rm [file name]` to delete a file. And to permanently delete the file we have to add that in staging area and then commit.
+- In `.gitignore` file we can write the name or the expression of files which we want to ignore. And all those file will not be in git repository but in file system. Even if the ignored file is modified it will not be shown by `git status` command, means we dont have to move that file to staging area and make commit.
+- `git diff [commit_id] [commit_id]` - to get difference between two commits. We can use HEAD as latest commit. If we dont give any commit ids then it will give difference between HEAD and latest uncommited changes. 
+- `git difftool [commit_id] [commit_id]` - we see the same as `git diff` command but we see in configured difftool which is p4merge in this case.
+- Branch is timeline of commits. Branch name is label for commits. 
+- Merging is three types -
+  - Fast-forward merge: When there is no commit in parent branch and then feature branch commits is simply mergeed with parent branch.
+  - Automatic merge: When git detects non-conflicting commit in the parent branch then git do automatic merging and parent timeline is preserveed and new commit is made on parent branch to show merging of branches.
+  - Manual: Where automatic merging is not possible and conflicting merge status exists.
+
 - 
