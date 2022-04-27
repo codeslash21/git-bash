@@ -56,4 +56,11 @@ git config --global difftool.promt false
   - Automatic merge: When git detects non-conflicting commit in the parent branch then git do automatic merging and parent timeline is preserveed and new commit is made on parent branch to show merging of branches.
   - Manual: Where automatic merging is not possible and conflicting merge status exists.
 
+- `git diff [branch name] [branch name]` - to see difference between two branches.
+- `git branch` - to see all the brances in git repository.
+- `git checkout -b [brance name]` - to create a new branch with the given name. And, we move to that branch and also if there is any uncommited change in the parent branch (even if its in staging area) then those changes will be moved on the new branch as uncommited chnages.
+- `git checkout [branch name]` - to change git branch.
+- HEAD is not just pointing to last commit but pointing to the last commit of the current branch.
+- `git merge [branch name]` - to merge the given branch with the current branch. 
+- `git branch -d [branch name]` - to delete the given branch. After merging if we delete the branch there is no problem as all the commits on that branch is already merged with current working branch.
 - 
