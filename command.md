@@ -63,4 +63,20 @@ git config --global difftool.promt false
 - HEAD is not just pointing to last commit but pointing to the last commit of the current branch.
 - `git merge [branch name]` - to merge the given branch with the current branch. 
 - `git branch -d [branch name]` - to delete the given branch. After merging if we delete the branch there is no problem as all the commits on that branch is already merged with current working branch.
-- 
+- `cat [file name]` - to see the file content in git bash.
+- `git mergetool` - to open configured mergetool to resolve merge conflict. When there is merge conflict means auto merging is not possible then we have to do manual merge. Mergetool has various options to choose to resolve conflict. After resolving conflict we have to commit. After resolving conflict a `[file name with extension].orig` file will be generated which contains original content of the file. Here file `[file name]` is the file which had conflict. We can add the `.orig` file to `.gitignore` and then we can remove that file.
+-  `git tag [tag name]` - to create light weight tag. If we dont specify commit id then tag will be assigned to HEAD.
+-  `git tag --list` - to list all the tags.
+-  `git tag -d [tag name]` - to delete the tag.
+-  `git show` - to see the details of latest commit on the current branch.
+-  `git tag -a [tag name like v1.0] -m "[note like release note]"` - to create annotated tag with given note. If we dont specify commit id then tag will be assigned to HEAD.
+-  `git show [annotated tag name]` - to show tag message along with commit detail to which tag is associated with.
+-  `git stash` - to save the last changes and it will not be shown in `git status` command as uncommited change though the change is not commited. And file will be same as before making the changes.
+-  `git stash list` - to show all the stash.
+-  `git stash pop` - to bring the changes back and the files will be same as before `git stash` command. If there are multiple stash then this command works like `stack pop` command means pop the last stash first and others changes will not be brought back. We have to give the command as many times as the number of stash listed to bring all the changes back. Here merge conflict is possible.
+-  `git reset [commit id] --soft` - to move HEAD to that commit id. And, all the changes will be instaging area.
+-  `git reset [commit id] --mixed` - to move HEAD to the commit if and its default mode. And, changes will be in working directory means we have to move that in staging area.
+-  `git resert [commit id] --hard` - to move HEAD tot he commit id and it changes all the file directly to that commit status means we dont have to move file to staging area or dont have to commit.
+-  `git log` command show the commits from where the HEAD is pointing but not after that.
+-  `git reflog` - show all log including `commit` or `reset` status.
+-  
