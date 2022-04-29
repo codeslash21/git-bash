@@ -35,7 +35,8 @@ git config --global difftool.promt false
 - `git ls-files` - show all the files which git is tracking. It not shows the files which is newly created and not commited.
 - `touch [file name with extension]` - to create a file with the given name.
 - `git commit -am "[commit message]"` - to commit the changes without moving files to staging area seperately. This command is not applicable for untracked file.
-- `git restore --staged [file name]` - to move file back from staging area to wworking directory.
+- `git restore --staged [file name]` - to move file back from staging area to working directory.
+- `git restore [file name]` - to undo changes in working directory.
 - `git checkout -- [file name]` - to undo changes in the file and back to the last commited version. This is applicable if file is in working directory not in staging area.
 - `git help log` - to know more about various options for `log` command.
 - `git log --oneline --graph --decorate --all` - show each commit message in one single line, (graph) with branch hierarchy, (decorate) and which commits belong to which branches, (all) for all the branches in the git repository.
@@ -79,4 +80,16 @@ git config --global difftool.promt false
 -  `git resert [commit id] --hard` - to move HEAD tot he commit id and it changes all the file directly to that commit status means we dont have to move file to staging area or dont have to commit.
 -  `git log` command show the commits from where the HEAD is pointing but not after that.
 -  `git reflog` - show all log including `commit` or `reset` status.
--  
+-  `git remote add origin [remote git repository url]` - To set remote repository with referenced name origin. We can use different name inplace of origin.
+-  `git remote -v` - to see all the remote repository.
+-  `git push -u origin main --tags` - to push local branch `main` to remote repository. `-u` stands for tracking branch relationship, so after the first command we dont need `-u` any more. `--tags` means we want to push all the tags also which are in local git repository in the remote repository. And, `origin` is the remote repository reference. `main` is the branch which we want to push up.
+-  To generate ssh key follow the following steps -
+  - `mkdir .ssh` give this command in home directory of the PC or User.
+  - `cd .ssh` - to move to that folder.
+  - `ssh-keygen -t rsa -C "[mail id]"` - to generate public/private key pair. ANd, there will be a promt to enter the file to which we want to save the key and just hit `enter` to choose the default.
+  - Then there will be promt to give passphrase and again to re-enter it.
+  - After the above steps in `.ssh` foler there will be two file - `id_rsa` and `id_rsa.pub` which holds keys for private and public rsa key pair respectively.
+  - `npp id_rsa.pub` - to open this file with default code editor(Notepad++) and copy all the contents and put that in SSH key part in `GitHub settings`.
+  - `ssh -T git@github.com` - to check we can connect github with ssh key. If yes then it shows successfully authenticated.
+
+- 
