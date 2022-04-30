@@ -83,6 +83,7 @@ git config --global difftool.promt false
 -  `git remote add origin [remote git repository url]` - To set remote repository with referenced name origin. We can use different name inplace of origin.
 -  `git remote -v` - to see all the remote repository.
 -  `git push -u origin main --tags` - to push local branch `main` to remote repository. `-u` stands for tracking branch relationship, so after the first command we dont need `-u` any more. `--tags` means we want to push all the tags also which are in local git repository in the remote repository. And, `origin` is the remote repository reference. `main` is the branch which we want to push up.
+- `git push` - it only push the changes on the current working branch to remote repo matching branch.
 -  To generate ssh key follow the following steps - 
     - `cd ~` - to move to home directory.
     - `mkdir .ssh` give this command in home directory of the PC or User.
@@ -93,4 +94,11 @@ git config --global difftool.promt false
     - `npp id_rsa.pub` - to open this file with default code editor(Notepad++) and copy all the contents and put that in SSH key part in `GitHub settings`.
     - `ssh -T git@github.com` - to check we can connect github with ssh key. If yes then it shows successfully authenticated.
 
+- `git clone [git repo url(https/ssh)]` - to create a local copy of the git repository with git repo name by default. And, the remote repo is referenced by `origin` by default.
+- `git clone [git repo url(https/ssh)] [new name]` - to create a local copy of the git repository with the given name.
+- `cp -R [source file path] [destination folder path]` - to copy the source file to destination folder.
+- `cp -R ~/[source folder path from home directory]/* .` - to copy all contents from source folder to current working directory.
+- `git fetch` - to fetch all the changes made on remote repository to local repo. It will not merge the chnages.
+- `git pull` - to fetch and merge the changes made on remote repo and it also cause merge conflict depending upon the changes. Its basically combiination of fetch and merge command.
+- `git remote show origin` - to details about the remote reference origin.
 - 
