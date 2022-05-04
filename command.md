@@ -101,4 +101,5 @@ git config --global difftool.promt false
 - `git fetch` - to fetch all the changes made on remote repository to local repo. It will not merge the chnages.
 - `git pull` - to fetch and merge the changes made on remote repo and it also cause merge conflict depending upon the changes. Its basically combiination of fetch and merge command.
 - `git remote show origin` - to details about the remote reference origin.
+- `git show [ssh commit id]` - to show details about that particular commit. We can get this commit id from github also if we are interested in particular commit in github and here to mention that local repo should have that commit.
 - 
