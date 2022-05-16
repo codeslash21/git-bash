@@ -82,7 +82,7 @@ git config --global difftool.promt false
 -  `git reflog` - show all log including `commit` or `reset` status.
 -  `git remote add origin [remote git repository url]` - To set remote repository with referenced name origin. We can use different name inplace of origin.
 -  `git remote -v` - to see all the remote repository.
--  `git push -u origin main --tags` - to push local branch `main` to remote repository. `-u` stands for tracking branch relationship, so after the first command we dont need `-u` any more. `--tags` means we want to push all the tags also which are in local git repository in the remote repository. And, `origin` is the remote repository reference. `main` is the branch which we want to push up.
+-  `git push -u origin main --tags` - to push local branch `main` to remote repository. `-u` stands for tracking branch relationship, so after the first command we dont need `-u` any more, we can simply use `git push` and `git pull`. `--tags` means we want to push all the tags also which are in local git repository in the remote repository. And, `origin` is the remote repository reference. `main` is the branch which we want to push up. If `main` branch is not in the git repo then it also create a branch with that name and push the commit.
 - `git push` - it only push the changes on the current working branch to remote repo matching branch.
 -  To generate ssh key follow the following steps - 
     - `cd ~` - to move to home directory.
