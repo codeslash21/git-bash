@@ -103,4 +103,6 @@ git config --global difftool.promt false
 - `git remote show origin` - to details about the remote reference origin.
 - `git show [ssh commit id]` - to show details about that particular commit. We can get this commit id from github also if we are interested in particular commit in github and here to mention that local repo should have that commit.
 - `git fetch -p` - to remove the local stale reference of dead branch on github. After merging we still have reference to that remote branch and even after deleting that remote branch.
-- 
+- `git config --global -e` - to see the config file.
+- `git pull` - to update only the active branch in local repo.
+- `git pull --all` - to update all the tracking branch.
