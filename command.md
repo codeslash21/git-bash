@@ -44,6 +44,7 @@ git config --global difftool.promt false
 - `git hist -- LICENSE.md` - show the git log pertaining only to LICENSE.md file.
 - `git mv [file name] [changed name]` - to rename the given file. And, after changing the name the file is in staging area and we have to commit the change.
 - `mv [file name] [changed name]` - here we use bash mv command instead of git mv command. And, here status is shown as `file name` is deleted and a new `changed name` file is added and its an untracked file. And, to move all to staging area we can use `git add -A` command.
+- `mv [file name] [destination folder name]` - to move the file from current directory to destination directory.
 - `git rm [file name]` - to delete the file. And, after this command file is in staging area and we can restore the file from there or can delete permanently by commiting that.
 - `git add -u` - move all the deleted file to staging area, but not other kind of files.
 - `git add -A` - move all the deelted and added files to staging area.
