@@ -46,6 +46,9 @@ git config --global difftool.promt false
 - `mv [file name] [changed name]` - here we use bash mv command instead of git mv command. And, here status is shown as `file name` is deleted and a new `changed name` file is added and its an untracked file. And, to move all to staging area we can use `git add -A` command.
 - `mv [file name] [destination folder name]` - to move the file from current directory to destination directory.
 - `git rm [file name]` - to delete the file. And, after this command file is in staging area and we can restore the file from there or can delete permanently by commiting that.
+- `rm -r [folder name]` - to delete the folder.
+- `rm [file name] [file name]` - to delete multiple files together.
+- `open [img name]` - to open img from cmd line.
 - `git add -u` - move all the deleted file to staging area, but not other kind of files.
 - `git add -A` - move all the deelted and added files to staging area.
 - If we use bash command instead of git command then file will be in working directory not in staging area. Like `rm [file name]` to delete a file. And to permanently delete the file we have to add that in staging area and then commit.
