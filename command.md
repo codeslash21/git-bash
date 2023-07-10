@@ -8,13 +8,13 @@
 - Following commands are for configuration of diff tool -
 ```
 git config --global merge.tool p4merge
-git config --global mergetool.p4merge.path "C:\Program Files\Perforce/p4merge.exe"
+git config --global mergetool.p4merge.path "C:\Program Files\Perforce\p4merge.exe"
 git config --global mergetool.promt false
 ```
 - Following commands are for configuration of diff tool -
 ```
 git config --global diff.tool p4merge
-git config --global difftool.p4merge.path "C:\Program Files\Perforce/p4merge.exe"
+git config --global difftool.p4merge.path "C:\Program Files\Perforce\p4merge.exe"
 git config --global difftool.promt false
 ```
 - Create or update `.bash_profile` to create alias. This file must be i user home directory. `notepad++ ~/.bash_profile` to open `.bash_profile` with the code editor Notepad++.
@@ -43,7 +43,7 @@ git config --global difftool.promt false
 - `git ls-files` - show all the files which git is tracking. It not shows the files which is newly created and not commited.
 - `touch [file name with extension]` - to create a file with the given name.
 - `git commit -am "[commit message]"` - to commit the changes without moving files to staging area seperately. This command is not applicable for untracked file.
-- `git restore --staged [file name]` - to move file back from staging area to working directory.
+- `git restore --staged [file name]` - to move file back from staging area to working directory. We can use `git reset` for the same purpose but it will move all the files from stagging area to working directory.
 - `git restore [file name]` - to undo changes in working directory. If a file has two changes and one is staged and another one in working directory, then by this command we can undo the change which is only in working directory.
 - `git checkout -- [file name]` - to undo changes in the file and back to the last commited version. This is applicable if file is in working directory not in staging area.
 - `git help log` - to know more about various options for `log` command.
@@ -58,7 +58,7 @@ git config --global difftool.promt false
 - `rm [file name] [file name]` - to delete multiple files together.
 - `open [img name]` - to open img from cmd line.
 - `git add -u` - move all the deleted file to staging area, but not other kind of files.
-- `git add -A` - move all the deelted and added files to staging area.
+- `git add -A` - move all the deleted and added files to staging area.
 - If we use bash command instead of git command then file will be in working directory not in staging area. Like `rm [file name]` to delete a file. And to permanently delete the file we have to add that in staging area and then commit.
 - In `.gitignore` file we can write the name or the expression of files which we want to ignore. And all those file will not be in git repository but in file system. Even if the ignored file is modified it will not be shown by `git status` command, means we dont have to move that file to staging area and make commit.
 - `git diff [commit_id] [commit_id]` - to get difference between two commits. We can use HEAD as latest commit. If we dont give any commit ids then it will give difference between HEAD and latest uncommited changes. 
@@ -70,8 +70,8 @@ git config --global difftool.promt false
   - Manual: Where automatic merging is not possible and conflicting merge status exists.
 
 - `git diff [branch name] [branch name]` - to see difference between two branches.
+- `git checkout -b [brance name]` - to create a new branch with the given name. And, we move to that branch and also if there is any uncommited change in the parent branch (even if its in staging area) then those changes will be moved on the new branch as uncommited changes.
 - `git branch` - to see all the brances in git repository.
-- `git checkout -b [brance name]` - to create a new branch with the given name. And, we move to that branch and also if there is any uncommited change in the parent branch (even if its in staging area) then those changes will be moved on the new branch as uncommited chnages.
 - `git checkout [branch name]` - to change git branch.
 - HEAD is not just pointing to last commit but pointing to the last commit of the current branch.
 - `git merge [branch name]` - to merge the given branch with the current branch. 
@@ -84,12 +84,12 @@ git config --global difftool.promt false
 -  `git show` - to see the details of latest commit on the current branch.
 -  `git tag -a [tag name like v1.0] -m "[note like release note]"` - to create annotated tag with given note. If we dont specify commit id then tag will be assigned to HEAD.
 -  `git show [annotated tag name]` - to show tag message along with commit detail to which tag is associated with.
--  `git stash` - to save the last changes and it will not be shown in `git status` command as uncommited change though the change is not commited. And file will be same as before making the changes.
+-  `git stash` - to save the last changes and it will not be shown in `git status` command as uncommited change though the change is neither commited nor stagged. And file will be same as before making the changes. After using `git stash` command if we make changes to other(or same) file and commit those changes then the saved changes will not be reflected on that commit. This command is helpful if we want to commit a new change before a already done change.
 -  `git stash list` - to show all the stash.
 -  `git stash pop` - to bring the changes back and the files will be same as before `git stash` command. If there are multiple stash then this command works like `stack pop` command means pop the last stash first and others changes will not be brought back. We have to give the command as many times as the number of stash listed to bring all the changes back. Here merge conflict is possible.
 -  `git reset [commit id] --soft` - to move HEAD to that commit id. And, all the changes will be instaging area.
--  `git reset [commit id] --mixed` - to move HEAD to the commit if and its default mode. And, changes will be in working directory means we have to move that in staging area.
--  `git resert [commit id] --hard` - to move HEAD tot he commit id and it changes all the file directly to that commit status means we dont have to move file to staging area or dont have to commit.
+-  `git reset [commit id] --mixed` - to move HEAD to the commit and its default mode. And, changes will be in working directory means we have to move that in staging area.
+-  `git resert [commit id] --hard` - to move HEAD to the commit id and it changes all the file directly to that commit status means we dont have to move file to staging area or dont have to commit.
 -  `git log` command show the commits from where the HEAD is pointing but not after that.
 -  `git reflog` - show all log including `commit` or `reset` status.
 -  `git remote add origin [remote git repository url]` - To set remote repository with referenced name origin. We can use different name inplace of origin.
@@ -114,7 +114,7 @@ git config --global difftool.promt false
 - `git fetch` - to fetch all the changes made on remote repository to local repo. It will not merge the chnages.
 - `git pull` - to fetch and merge the changes made on remote repo and it also cause merge conflict depending upon the changes. Its basically combiination of fetch and merge command. It update only the active branch in local repo.
 - `git pull --all` - to update all the tracking branch.
-- `git branch --set-upstream-to=<remote reference>/<branch> <local branch>` - to set tracking information for the local branch with desired remote branch. To use `git pull` command its needed if not done already, but if we used before `git clone` or `git push` command then its not needed as tracking is laready set for the active branch. Otherwise we have to use `git pull <remote reference> <remote branch>`.
+- `git branch --set-upstream-to=<remote reference>/<branch> <local branch>` - to set tracking information for the local branch with desired remote branch. To use `git pull` command its needed if not done already, but if we used before `git clone` or `git push` command then its not needed as tracking is already set for the active branch. Otherwise we have to use `git pull <remote reference> <remote branch>`.
 - `git remote show origin` - to details about the remote reference origin.
 - `git show [ssh commit id]` - to show details about that particular commit. We can get this commit id from github also if we are interested in particular commit in github and here to mention that local repo should have that commit.
 - `git fetch -p` - to remove the local stale reference of dead branch on github. After merging we still have reference to that remote branch and even after deleting that remote branch.
