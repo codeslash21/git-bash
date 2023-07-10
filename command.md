@@ -3,17 +3,22 @@
 - `git config --global user.[key] "value"` - to add user details in config file. And `key` can be name, email etc.
 - `git config --global core.editor "[editor].exe -multiInst -nosession"` - to config default editor.
 - `git config --global --list` - list all the configurations which are done at global/user level.
-- `git config --global -e` - allow to edit .gitconfig file ith default editor.
+- `git config --global -e` - allow to edit .gitconfig file in the default editor.
 - `cat ~/.gitconfig` - print the content of the file which is located in user directory.
-- `git config --global merge.tool p4merge` - to set merge tool to resolve conflict while merging.
-- `git config --global mergetool.p4merge.path "C:\Program Files\Perforce/p4merge.exe"` - to give path to merge tool.
-- `git config --global mergetool.promt false` - to tell git not to promt whether or not to launch p4merge.
+- Following commands are for configuration of diff tool -
+```
+git config --global merge.tool p4merge
+git config --global mergetool.p4merge.path "C:\Program Files\Perforce/p4merge.exe"
+git config --global mergetool.promt false
+```
 - Following commands are for configuration of diff tool -
 ```
 git config --global diff.tool p4merge
 git config --global difftool.p4merge.path "C:\Program Files\Perforce/p4merge.exe"
 git config --global difftool.promt false
 ```
+- Create or update `.bash_profile` to create alias. This file must be i user home directory. `notepad++ ~/.bash_profile` to open `.bash_profile` with the code editor Notepad++.
+- `alias npp='notepad++ -multiInst -nosession'` - to create alias `npp` for `notepad++ -multiInst -nosession`.
 - `ls -al` - list all file and floder in the current working directory.
 - `mkdir [folder name]` - to create a folder with sepcified name.
 - `clear` - to clear the bash window means delete all the previous content. But, previously used comment are still accessable using arrow keys.
