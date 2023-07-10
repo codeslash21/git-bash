@@ -22,26 +22,29 @@ git config --global difftool.promt false
 - `ls -al` - list all file and floder in the current working directory.
 - `mkdir [folder name]` - to create a folder with sepcified name.
 - `clear` - to clear the bash window means delete all the previous content. But, previously used comment are still accessable using arrow keys.
-- `git init [project name]` - to create a git repository with specified name and that folder contains `.git` folder initially.
+- `git init [project name]` - to create a working directory with specified name and that folder contains `.git` folder(which is git repository) initially.
 - Working directory (or files and folders), staging area and repository(or .git folder) are managed by git locally. Remote repository is also an another repository which also contains all these three stages of its own.
 - `git status` - to see status of working directory (like file is modified or added or nothig is done).
 - `npp [file name with extension]` - to create a file with given name and open Notepad++ editor(as alias npp stands for Notepad++) to write content of the file.
 - `git add README.md` - move edited README file from working directory to staging area.
 - `git commit -m "README edited"` - all the files move from staging area to repository area with the given commit message.
-- Folder where `.git` folder is present is working directory of git. `.git` is actual git repository which git manages internally. If we delete `.git` folder then we will be no longer on any branch and that folder cant be recognised as git repository. So, if we type `git status` command in working folder we get error message "not a git repository( or any of the parent directories)"
+- Folder where `.git` folder is present is working directory of git. `.git` is actual git repository which git manages internally. If we delete `.git` folder then we will be no longer on any branch and that folder cant be recognised as git's working directory. So, if we type `git status` command in working folder we get error message "not a git repository( or any of the parent directories)"
 - `cd .git` - to move to .git folder.
 - `rm -rf .git` - to remove .git folder forcefully and recursively.
 - `git init` - to initialize an empty git repository in the current working folder. But this .git folder has no prior knowledge of the present files and folders and it start fresh. So, when we type `git status` it shows every files in the current directory as untracked files and we have to make commit to create record of those files in git repository.
 - `git add .` - to move all the edited files from working directory to git staging area.
 - `git commit` - to commit all the changes and and open git core editor which is configured to write commit message.
 - `git log` - to see all the commits with commit id, date, author and commit message.
-- `git show` - to see all the info wwhich we can get using `git log` command including changes in all the edited files.
+- `git show` - to see all the info which we can get using `git log` command including changes in all the edited files.
+
+![image](https://github.com/codeslash21/git-bash/assets/32652085/59c0e716-11a9-4a2a-ba08-b151a7f09476)
+
 - When a new file is commited once then that file is tracked by Git and when the file is modified then git shows that file as modified and not as untracked. But a new file is shown as untracked file as its not be commited even for a single time.
 - `git ls-files` - show all the files which git is tracking. It not shows the files which is newly created and not commited.
 - `touch [file name with extension]` - to create a file with the given name.
 - `git commit -am "[commit message]"` - to commit the changes without moving files to staging area seperately. This command is not applicable for untracked file.
 - `git restore --staged [file name]` - to move file back from staging area to working directory.
-- `git restore [file name]` - to undo changes in working directory.
+- `git restore [file name]` - to undo changes in working directory. If a file has two changes and one is staged and another one in working directory, then by this command we can undo the change which is only in working directory.
 - `git checkout -- [file name]` - to undo changes in the file and back to the last commited version. This is applicable if file is in working directory not in staging area.
 - `git help log` - to know more about various options for `log` command.
 - `git log --oneline --graph --decorate --all` - show each commit message in one single line, (graph) with branch hierarchy, (decorate) and which commits belong to which branches, (all) for all the branches in the git repository.
