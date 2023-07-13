@@ -2,6 +2,7 @@
 - `git help [command]` - to get info about the command.
 - `git config --global user.[key] "value"` - to add user details in config file. And `key` can be name, email etc.
 - `git config --global core.editor "[editor].exe -multiInst -nosession"` - to config default editor.
+- `git config --global init.defaultBranch main` - to set default branch as main.
 - `git config --global --list` - list all the configurations which are done at global/user level.
 - `git config --global -e` - allow to edit .gitconfig file in the default editor.
 - `cat ~/.gitconfig` - print the content of the file which is located in user directory.
@@ -23,6 +24,7 @@ git config --global difftool.promt false
 - `mkdir [folder name]` - to create a folder with sepcified name.
 - `clear` - to clear the bash window means delete all the previous content. But, previously used comment are still accessable using arrow keys.
 - `git init [project name]` - to create a working directory with specified name and that folder contains `.git` folder(which is git repository) initially.
+- `git init -b main [project name]` - do the same as `git init [project name]` but the default branch name will be `main`.
 - Working directory (or files and folders), staging area and repository(or .git folder) are managed by git locally. Remote repository is also an another repository which also contains all these three stages of its own.
 - `git status` - to see status of working directory (like file is modified or added or nothig is done).
 - `npp [file name with extension]` - to create a file with given name and open Notepad++ editor(as alias npp stands for Notepad++) to write content of the file.
@@ -72,13 +74,16 @@ git config --global difftool.promt false
 - `git diff [branch name] [branch name]` - to see difference between two branches.
 - `git checkout -b [brance name]` - to create a new branch with the given name. And, we move to that branch and also if there is any uncommited change in the parent branch (even if its in staging area) then those changes will be moved on the new branch as uncommited changes.
 - `git branch` - to see all the brances in git repository.
-- `git checkout [branch name]` - to change git branch.
+- `git branch -a` - to list all the local and remote branches.
+- `git checkout [branch name]` - to change git branch. If the branch we want to switch to is not there locally then it will look for that branch in remote repository that origin refer to. If the branch is not present there also then it will show error message.
+- `git branch -m main` - to change the current branch name to `main` and switch to that branch.
 - HEAD is not just pointing to last commit but pointing to the last commit of the current branch.
 - `git merge [branch name]` - to merge the given branch with the current branch. 
 - `git branch -d [branch name]` - to delete the given branch. After merging if we delete the branch there is no problem as all the commits on that branch is already merged with current working branch.
 - `cat [file name]` - to see the file content in git bash.
 - `git mergetool` - to open configured mergetool to resolve merge conflict. When there is merge conflict means auto merging is not possible then we have to do manual merge. Mergetool has various options to choose to resolve conflict. After resolving conflict we have to commit. After resolving conflict a `[file name with extension].orig` file will be generated which contains original content of the file. Here file `[file name]` is the file which had conflict. We can add the `.orig` file to `.gitignore` and then we can remove that file.
 -  `git tag [tag name]` - to create light weight tag. If we dont specify commit id then tag will be assigned to HEAD.
+-  `git tag tag_name branch_name` - to create light weight tag for the last commit on the mentioned branch.
 -  `git tag --list` - to list all the tags.
 -  `git tag -d [tag name]` - to delete the tag.
 -  `git show` - to see the details of latest commit on the current branch.
@@ -96,7 +101,8 @@ git config --global difftool.promt false
 -  `git remote -v` - to see all the remote repository.
 -  `git push -u origin main --tags` - to push local branch `main` to remote repository. `-u` stands for tracking branch relationship, so after the first command we dont need `-u` any more, we can simply use `git push` and `git pull`. `--tags` means we want to push all the tags also which are in local git repository in the remote repository. And, `origin` is the remote repository reference. `main` is the branch which we want to push up. If `main` branch is not in the git repo then it also create a branch with that name and push the commit.
 -  `git push -u [remote reference] [branch name]` - to push the changes in the branch. If branch is not in the remote git repository then it will ceate that branch and push the changes.
-- `git push` - it only push the changes on the current working branch to remote repo matching branch.
+- `git push` - it only push the changes on the current working branch to remote repo matching branch. But it will not push any tags.
+- `git push origin tag_name` - to push the specific tag to the remote repository.
 -  To generate ssh key follow the following steps - 
     - `cd ~` - to move to home directory.
     - `mkdir .ssh` give this command in home directory of the PC or User.
@@ -111,11 +117,19 @@ git config --global difftool.promt false
 - `git clone [git repo url(https/ssh)] [new name]` - to create a local copy of the git repository with the given name.
 - `cp -R [source file path] [destination folder path]` - to copy the source file to destination folder.
 - `cp -R ~/[source folder path from home directory]/* .` - to copy all contents from source folder to current working directory.
-- `git fetch` - to fetch all the changes made on remote repository to local repo. It will not merge the chnages.
-- `git pull` - to fetch and merge the changes made on remote repo and it also cause merge conflict depending upon the changes. Its basically combiination of fetch and merge command. It update only the active branch in local repo.
+- `git fetch` - to fetch all the changes made on remote repository to local repo. It will not merge the chnages. It will show the difference between commits in local and remote branches.
+- `git pull` - to fetch and merge the changes made on remote repo and it also cause merge conflict depending upon the changes. Its basically combiination of fetch and merge command. It update only the active branch in local repo. If there is any extra branch in the remote repository then it will not be created automaticalyy by using `git pull`. We have to create manually or we can use `git checkout`.
 - `git pull --all` - to update all the tracking branch.
 - `git branch --set-upstream-to=<remote reference>/<branch> <local branch>` - to set tracking information for the local branch with desired remote branch. To use `git pull` command its needed if not done already, but if we used before `git clone` or `git push` command then its not needed as tracking is already set for the active branch. Otherwise we have to use `git pull <remote reference> <remote branch>`.
+- `git remote set-url origin [new url]` - to change the reference origin pointing to.
 - `git remote show origin` - to details about the remote reference origin.
 - `git show [ssh commit id]` - to show details about that particular commit. We can get this commit id from github also if we are interested in particular commit in github and here to mention that local repo should have that commit.
 - `git fetch -p` - to remove the local stale reference of dead branch on github. After merging we still have reference to that remote branch and even after deleting that remote branch.
-- 
+- To delete branch from remote git repository type this command `git push origin :branch_name`. `origin` is remote reference and `branch_name` is the branch we want to delete.
+- If there is 1 and 1 different commit on each local and remote repository and they will not create merge conflict then if we use `git pull` then both commits will eb merged and create a new merge commit. but if we want whatever we are currently working on will stay ahead of github commit then we will use `git pull --rebase`. In this case another new commit will not created, rather there will be github commits first and then local commits.
+
+### NOTES:
+- We can use github commit id to see the commit details in local system using git bash.
+- We can create a new branch in github and after making a commit on the new branch we can do `pull request` to merge that branch with the default branch. And after  creating pull request there will be an open pull request we can see that in pull request tab of that repository. We can see changed files in that pull request and we can add inline comment after a particular linne in the code. If we do `close pull request` then that will close the pull request without merging the changes. To merge the commit with the default or base branch we have to do `merge pull request`. After merging we can delete that branch also.
+- If we have a branch that remote repository dont have then when we push the changes from that new branch then that new branch will be created automatically.
+- When we have tags on remote repository then we have different versions of code associated with those tags, and we can and download see those different versions.
