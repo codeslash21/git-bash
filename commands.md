@@ -1,4 +1,24 @@
 # Important Git Commands
+# Contents
+- [Genral Commands](#general-commands)
+- [Git Configuration](#git-configuration)
+- [Alias](#alias)
+- [Git Initialisation](#git-initialisation)
+- [Stages of Git](#stages-of-git)
+- [Moves between stages | reset | restore](#)
+- [Copy | Rename | Delete files](#)
+- [Commit Deatails](#commit-details)
+- [Create Branch](#create-branch)
+- [See Differences](#see-differences)
+- [Merging](#merging)
+- [Tag](#tag)
+- [Stashing](#stashing)
+- [SSH Key](#ssh-key)
+- [Connect remote GitHub Repo](#connect-remote-github-repo)
+- [Push and Pull](#push-and-pull)
+- [Pull Request](#pull-request)
+- [Note](#note)
+
 ## Genral Commands
 - `git help [command]` - to get info about the command.
 - `cat ~/.gitconfig` - print the content of the file which is located in user's home directory.
@@ -11,7 +31,7 @@
 - `git ls-files` - show all the files which git is tracking. It not shows the files which is newly created and not commited.
 - `cd folder_name` - to enter the directory named folder_name.
 - `open [img name]` - to open img from cmd line.
-## Git configuration
+## Git Configuration
 - `git config --global user.[key] "value"` - to add user details in config file. And `key` can be name, email etc.
 - `git config --global core.editor "[editor].exe -multiInst -nosession"` - to config default editor.
 - `git config --global init.defaultBranch main` - to set default branch as main.
@@ -35,7 +55,7 @@ git config --global difftool.promt false
 - `alias npp='notepad++ -multiInst -nosession'` - to create alias `npp` for `notepad++ -multiInst -nosession`.
 - `npp file_name.extension` - to create and open file with notepad++ to edit.
 
-## Initialisation
+## Git Initialisation
 - `git init` - to initialize an empty git repository in the current working folder. But this .git folder has no prior knowledge of the present files and folders and it start fresh. So, when we type `git status` it shows every files in the current directory as untracked files and we have to make commit to create record of those files in git repository.
 - `git init [project name]` - to create a working directory in the current directory with specified name and that folder contains `.git` folder(which is git repository) initially.
 - `git init -b main [project name]` - do the same as `git init [project name]` but the default branch name will be `main`.
@@ -47,7 +67,7 @@ git config --global difftool.promt false
 
 - When a new file is commited once then that file is tracked by Git and when the file is modified then git shows that file as modified and not as untracked. But a new file is shown as untracked file as its not be commited even for a single time.
 
-## Moves between stages, reset, restore
+## Moves between stages | reset | restore
 - `git status` - to see status of working directory (like file is modified or added or nothig is done).
 - `git add README.md` - move edited README file from working directory to staging area.
 - `git add .` - to move all the edited files from working directory to git staging area.
@@ -63,7 +83,7 @@ git config --global difftool.promt false
 -  `git reset [commit id] --mixed` - to move HEAD to the commit and it is default mode. And, changes will be in working directory means we have to move that in staging area.
 -  `git resert [commit id] --hard` - to move HEAD to the commit id and it changes all the file directly to that commit status means we dont have to move file to staging area or dont have to commit.
   
-## Copy, Rename and Delete
+## Copy | Rename | Delete files
 - `rm -rf .git` - to remove .git folder forcefully and recursively.
 - `rm -r [folder name]` - to delete the folder. `r` flag stands for recursively means delete the folder and also all of its content. If the folder does not has any content they no need to use `r` flag.
 - `git rm [file name]` - to delete the file. And, after this command file is in staging area and we can restore the file from there or can delete permanently by commiting that.
@@ -74,7 +94,7 @@ git config --global difftool.promt false
 - `cp -R [source file path] [destination folder path]` - to copy the source file to destination folder.
 - `cp -R ~/[source folder path from home directory]/* .` - to copy all contents from source folder to current working directory.
 
-## Commit details
+## Commit Details
 - `git help log` - to know more about various options for `log` command.
 - `git log` - to see all the commits with commit id, date, author and commit message. `git log` command show the commits from where the HEAD is pointing but not after that.
 -  `git reflog` - show all log including `commit` or `reset` status.
@@ -84,7 +104,18 @@ git config --global difftool.promt false
 - `git config --global alias.hist "log --oneline --graph --decorate --all"` to create an alias named `hist` for the command `log --oneline --graph --decorate --all`.
 - `git hist -- LICENSE.md` - show the git log pertaining only to LICENSE.md file.
 
-## See difference
+## Create Branch
+- Branch is timeline of commits. Branch name is label for commits. 
+- `git checkout -b [brance name]` - to create a new branch with the given name. And, we move to that branch and also if there is any uncommited change in the parent branch (even if its in staging area) then those changes will be moved on the new branch as uncommited changes.
+- `git branch` - to see all the brances in git repository.
+- `git branch -a` - to list all the local and remote branches.
+- `git checkout [branch name]` - to change git branch. If the branch we want to switch to is not there locally then it will look for that branch in remote repository that origin refer to. If the branch is not present there also then it will show error message.
+- `git branch -m main` - to change the current branch name to `main` and switch to that branch.
+- `git branch -d [branch name]` - to delete the given branch. After merging if we delete the branch there is no problem as all the commits on that branch is already merged with current working branch.
+- `git push origin :branch_name` to delete branch from remote git repository. `origin` is remote reference and `branch_name` is the branch we want to delete.
+- If we have a branch that remote repository dont have then when we push the changes from that new branch then that new branch will be created automatically.
+
+## See Difference
 - `git diff [commit_id] [commit_id]` - to get difference between two commits. We can use HEAD as latest commit. If we dont give any commit ids then it will give difference between HEAD and latest uncommited changes. 
 - `git difftool [commit_id] [commit_id]` - we see the same as `git diff` command but we see in configured difftool which is p4merge in this case.
 - `git diff [branch name] [branch name]` - to see difference between two branches.
@@ -96,17 +127,6 @@ git config --global difftool.promt false
   - Manual: Where automatic merging is not possible and conflicting merge status exists.
  - `git merge [branch name]` - to merge the given branch with the current branch. 
 - `git mergetool` - to open configured mergetool to resolve merge conflict. When there is merge conflict means auto merging is not possible then we have to do manual merge. Mergetool has various options to choose to resolve conflict. After resolving conflict we have to commit. After resolving conflict a `[file name with extension].orig` file will be generated which contains original content of the file. Here file `[file name]` is the file which had conflict. We can add the `.orig` file to `.gitignore` and then we can remove that file.
-
-## Create branch
-- Branch is timeline of commits. Branch name is label for commits. 
-- `git checkout -b [brance name]` - to create a new branch with the given name. And, we move to that branch and also if there is any uncommited change in the parent branch (even if its in staging area) then those changes will be moved on the new branch as uncommited changes.
-- `git branch` - to see all the brances in git repository.
-- `git branch -a` - to list all the local and remote branches.
-- `git checkout [branch name]` - to change git branch. If the branch we want to switch to is not there locally then it will look for that branch in remote repository that origin refer to. If the branch is not present there also then it will show error message.
-- `git branch -m main` - to change the current branch name to `main` and switch to that branch.
-- `git branch -d [branch name]` - to delete the given branch. After merging if we delete the branch there is no problem as all the commits on that branch is already merged with current working branch.
-- `git push origin :branch_name` to delete branch from remote git repository. `origin` is remote reference and `branch_name` is the branch we want to delete.
-- If we have a branch that remote repository dont have then when we push the changes from that new branch then that new branch will be created automatically.
 
 ## Tag
 -  `git tag [tag name]` - to create light weight tag. If we dont specify commit id then tag will be assigned to HEAD.
@@ -137,7 +157,7 @@ git config --global difftool.promt false
     - `npp id_rsa.pub` - to open this file with default code editor(Notepad++) and copy all the contents and put that in SSH key part in `GitHub settings`.
     - `ssh -T git@github.com` - to check we can connect github with ssh key. If yes then it shows successfully authenticated.
 
-## Connect remote Github repo
+## Connect remote Github Repo
 -  `git remote add origin [remote git repository url]` - To set remote repository with referenced name origin. We can use different name inplace of origin.
 -  `git remote -v` - to see the connected remote repository.
 - `git clone [git repo url(https/ssh)]` - to create a local copy of the git repository with git repo name by default. And, the remote repo is referenced by `origin` by default.
