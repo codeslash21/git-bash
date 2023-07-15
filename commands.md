@@ -11,7 +11,7 @@
 - [Create Branch](#create-branch)
 - [See Differences](#see-differences)
 - [Merging](#merging)
-- [Tag](#tag)
+- [Tag](#tag-and-release)
 - [Stashing](#stashing)
 - [SSH Key](#ssh-key)
 - [Connect remote GitHub Repo](#connect-remote-github-repo)
@@ -119,7 +119,8 @@ git config --global difftool.promt false
 - `git diff [commit_id] [commit_id]` - to get difference between two commits. We can use HEAD as latest commit. If we dont give any commit ids then it will give difference between HEAD and latest uncommited changes. 
 - `git difftool [commit_id] [commit_id]` - we see the same as `git diff` command but we see in configured difftool which is p4merge in this case.
 - `git diff [branch name] [branch name]` - to see difference between two branches.
-
+- In github iterface we can see the differences between two branches using pull request section. We go to `pull request` section and then `create pull request`, from there we choose two branches we want to compare. From where we choose the branch, there we can also put commit id that we want to compare with the latest commit on the other branch or different commit on same branch. we can compare between two tags in the same way. Here we can also compare with a particular state on a branch. Like we can compare with a state before `3 days` (like `main@{3 days}`) or on a particular date `yyyy-mm-dd` (like main@{2015-09-23}`).
+- We can see difference between two commits also. If we select a particulat commit then it will show the difference between that commit and the latest commit on that branch. We can comment to a specific line and also we can comment on that particular commit.
 ## Merging
 - Merging is three types -
   - Fast-forward merge: When there is no commit in parent branch and then feature branch commits is simply mergeed with parent branch.
@@ -128,7 +129,7 @@ git config --global difftool.promt false
  - `git merge [branch name]` - to merge the given branch with the current branch. 
 - `git mergetool` - to open configured mergetool to resolve merge conflict. When there is merge conflict means auto merging is not possible then we have to do manual merge. Mergetool has various options to choose to resolve conflict. After resolving conflict we have to commit. After resolving conflict a `[file name with extension].orig` file will be generated which contains original content of the file. Here file `[file name]` is the file which had conflict. We can add the `.orig` file to `.gitignore` and then we can remove that file.
 
-## Tag
+## Tag and release
 -  `git tag [tag name]` - to create light weight tag. If we dont specify commit id then tag will be assigned to HEAD.
 -  `git tag tag_name branch_name` - to create light weight tag for the last commit on the mentioned branch.
 -  `git tag --list` - to list all the tags.
@@ -140,7 +141,10 @@ git config --global difftool.promt false
 -  `git show [annotated tag name]` - to show tag message along with commit detail to which tag is associated with.
 -  `git tag -f tag_name commit_id` - to make a already existed tag floating, the tag will refer to the newly assigned commit id. And to update remote repo with that if we do `git push origin tag_name` then it will show message `tag already exist` and will not update that with latest commit id. So, to update there are two ways - one we delete the tag from remote repo and then push the tag again, second we psu the tag forcefully using `git psuh --force origin tag_name`.
 - When we have tags on remote repository then we have different versions of code associated with those tags, and we can and download see those different versions.
-
+- When we create tag usinng github interface then that tag will be light-weight tag not the annotated tag.
+- On github under `tag` and `release` sections we have same tags. But when we release a tag with release notes that we can see in `release` section with release note. In release note we can add the `pull request` and `issues` those are related to that release. And also we can add specific description about the release. We can edit the release note after that has been released. We can also choose that our release is production ready or not.
+- If we delete a release that will not delete the associated tag and commit. That only delete the release.
+- We can create a new release from `release` tab with a new or already created tag. If we want to create with a new tag then we can choose the commit id that we want to release.
 ## Stashing
 -  `git stash` - to save the last changes and it will not be shown in `git status` command as uncommited change though the change is neither commited nor stagged. And file will be same as before making the changes. After using `git stash` command if we make changes to other(or same) file and commit those changes then the saved changes will not be reflected on that commit. This command is helpful if we want to commit a new change before a already done change.
 -  `git stash list` - to show all the stash.
@@ -179,7 +183,7 @@ git config --global difftool.promt false
 
 ## Pull Request
 - We can create a new branch in github and after making a commit on the new branch we can do `pull request` to merge that branch with the default branch. And after  creating pull request there will be an open pull request we can see that in pull request tab of that repository. We can see changed files in that pull request and we can add inline comment after a particular linne in the code. If we do `close pull request` then that will close the pull request without merging the changes. To merge the commit with the default or base branch we have to do `merge pull request`. After merging we can delete that branch also.
-
+- If we fork a repository then when we make a commit to our copy of forked repo, then there will be a option for `pull request`. If we click on `pul request` then we can see the difference between default branch of forked repo and our current branch. And, finally if we create pull request then that request will be sent to forked repo.
 
 ## NOTE:
 - If we use bash command instead of git command then file will be in working directory not in staging area. Like `rm [file name]` to delete a file. And to permanently delete the file we have to add that in staging area and then commit.
