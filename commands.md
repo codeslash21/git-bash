@@ -5,8 +5,8 @@
 - [Alias](#alias)
 - [Git Initialisation](#git-initialisation)
 - [Stages of Git](#stages-of-git)
-- [Moves between stages | reset | restore](#)
-- [Copy | Rename | Delete files](#)
+- [Moves between stages | reset | restore](#moves-between-stages--reset--restore)
+- [Copy | Rename | Delete files](#copy--rename--delete-files)
 - [Commit Deatails](#commit-details)
 - [Create Branch](#create-branch)
 - [See Differences](#see-differences)
@@ -115,7 +115,7 @@ git config --global difftool.promt false
 - `git push origin :branch_name` to delete branch from remote git repository. `origin` is remote reference and `branch_name` is the branch we want to delete.
 - If we have a branch that remote repository dont have then when we push the changes from that new branch then that new branch will be created automatically.
 
-## See Difference
+## See Differences
 - `git diff [commit_id] [commit_id]` - to get difference between two commits. We can use HEAD as latest commit. If we dont give any commit ids then it will give difference between HEAD and latest uncommited changes. 
 - `git difftool [commit_id] [commit_id]` - we see the same as `git diff` command but we see in configured difftool which is p4merge in this case.
 - `git diff [branch name] [branch name]` - to see difference between two branches.
