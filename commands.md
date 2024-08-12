@@ -79,9 +79,9 @@ git config --global difftool.promt false
 - `git restore --staged [file name]` - to move file back from staging area to working directory. We can use `git reset` for the same purpose but it will move all the files from stagging area to working directory.
 - `git restore [file name]` - to undo changes in working directory. If a file has two changes and one is staged and another one in working directory, then by this command we can undo the change which is only in working directory.
 - `git checkout -- [file name]` - to undo changes in the file and back to the last commited version. This is applicable if file is in working directory not in staging area.
--  `git reset [commit id] --soft` - to move HEAD to that commit id. And, all the changes will be instaging area.
+-  `git reset [commit id] --soft` - to move HEAD to that commit id. And, all the changes will be in staging area.
 -  `git reset [commit id] --mixed` - to move HEAD to the commit and it is default mode. And, changes will be in working directory means we have to move that in staging area.
--  `git resert [commit id] --hard` - to move HEAD to the commit id and it changes all the file directly to that commit status means we dont have to move file to staging area or dont have to commit.
+-  `git reset [commit id] --hard` - to move HEAD to the commit id and it changes all the file directly to that commit status means we dont have to move file to staging area or dont have to commit.
   
 ## Copy | Rename | Delete files
 - `rm -rf .git` - to remove .git folder forcefully and recursively.
