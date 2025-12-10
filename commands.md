@@ -76,6 +76,7 @@ git config --global difftool.promt false
 - `git commit -m "README edited"` - all the files move from staging area to repository area with the given commit message.
 - `git commit` - to commit all the changes and and open git core editor which is configured to write commit message.
 - `git commit -am "[commit message]"` - to commit the changes without moving files to staging area seperately. This command is not applicable for untracked file.
+- `git rm -r --cached [file/folder_name]` if we want remove a file/folder from the index so that git will not track it for any changes, then run this command and run `git commit -m "[commit message]"`, no need to run `git add` command.
 - `git restore --staged [file name]` - to move file back from staging area to working directory. We can use `git reset` for the same purpose but it will move all the files from stagging area to working directory.
 - `git restore [file name]` - to undo changes in working directory. If a file has two changes and one is staged and another one in working directory, then by this command we can undo the change which is only in working directory.
 - `git checkout -- [file name]` - to undo changes in the file and back to the last commited version. This is applicable if file is in working directory not in staging area.
