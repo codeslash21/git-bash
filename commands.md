@@ -115,6 +115,13 @@ git config --global difftool.promt false
 - `git branch -d [branch name]` - to delete the given branch. After merging if we delete the branch there is no problem as all the commits on that branch is already merged with current working branch.
 - `git push origin :branch_name` to delete branch from remote git repository. `origin` is remote reference and `branch_name` is the branch we want to delete.
 - If we have a branch that remote repository dont have then when we push the changes from that new branch then that new branch will be created automatically.
+- Lets say we have one branch `main` which has all our code, and we want to create another branch `prod` which will not have any code and history, then follow the below steps to create the `prod` branch
+```
+git checkout --orphan prod
+git rm -rf .
+git commit --allow-empty -m "Initial empty commit for prod branch"
+git push origin prod
+```
 
 ## See Differences
 - `git diff [commit_id] [commit_id]` - to get difference between two commits. We can use HEAD as latest commit. If we dont give any commit ids then it will give difference between HEAD and latest uncommited changes. 
